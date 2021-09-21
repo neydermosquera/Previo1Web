@@ -9,12 +9,12 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="estilos.css" rel="stylesheet" />
-    <script src="funciones.js"></script>
+    <script src="main.js"></script>
     
 
     <title>Previo1WEB</title>
   </head>
-  <body>
+  <body class="index">
 
     <div class="titulo">
             <p class=" text-center"><strong>Web</strong> Developer</p>
@@ -26,7 +26,7 @@
 
             <p>Formulario de afiliación</p><br>
 
-            <form id="formulario">
+            <form  id = "formulario" action="datos.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">
             <div class="row">
                     <div  class="form-group has-feedback left col-sm-12">
                         <i class="fa fa-user form-control-feedback"></i>
@@ -106,7 +106,7 @@
                             '<td><input class="form-control" type="text" name="porcentaje" id="porcentaje" value="'+porcentaje+'" size="5"</td>'+ '<td>En edición</td>';
                 nodoTr.innerHTML = nuevoCodigoHtml;
                 nodoContenedorForm.innerHTML = 'Pulse ACEPTAR para guardar los cambios o CANCELAR para anularlos'+
-                                        '<form name = "formulario" action="Recibido.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+'<input class="btn boton" type = "submit" value="Aceptar"> <input class="btn btn-secondary" type="reset" value="Cancelar">';
+                                        '<form name = "formulario" action="datos.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+'<input class="btn boton" type = "submit" value="Aceptar"> <input class="btn btn-secondary" type="reset" value="Cancelar">';
         editando = "true";
         }
         else {
@@ -117,11 +117,12 @@
         function capturarEnvio() {
 
             var nodoContenedorForm = document.getElementById('contenedorForm'); 
-            nodoContenedorForm.innerHTML = '<form name = "formulario" action="Recibido.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+
+            nodoContenedorForm.innerHTML = '<form name = "formulario" action="datos.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+
             '<input type="text" name="nombre" value="'+document.querySelector('#nombre').value+'">'+
-            '<input type="hidden" name="email" value="'+document.querySelector('#email').value+'">'+
-            '<input type="hidden" name="telefono" value="'+document.querySelector('#telefono').value+'">'+
-            '<input type="hidden" name="gustos" value="'+document.querySelector('#gustos').value+'">'+
+            '<input type="text" name="email" value="'+document.querySelector('#email').value+'">'+
+            '<input type="text" name="telefono" value="'+document.querySelector('#telefono').value+'">'+
+            '<input type="text" name="gustos" value="'+document.querySelector('#gustos').value+'">'+
+            '<input type="text" name="porcentaje" value="'+document.querySelector('#porcentaje').value+'">'
             document.formulario.submit();
         }
         
