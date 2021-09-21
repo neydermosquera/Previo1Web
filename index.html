@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="estilos.css" rel="stylesheet" />
+    <script src="funciones.js"></script>
+    
+
+    <title>Previo1WEB</title>
+  </head>
+  <body>
+
+    <div class="titulo">
+            <p class=" text-center"><strong>Web</strong> Developer</p>
+    </div>
+    
+     <div class="principal">
+
+        <div class="container p-5">
+
+            <p>Formulario de afiliación</p><br>
+
+            <form id="formulario">
+            <div class="row">
+                    <div  class="form-group has-feedback left col-sm-12">
+                        <i class="fa fa-user form-control-feedback"></i>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre completo">
+                </div>
+            
+                <div  class="form-group has-feedback col-sm-12">
+                    <i class="fa fa-envelope form-control-feedback"></i>
+                    <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+                    
+                </div>
+
+                <div  class="form-group has-feedback col-sm-12">
+                    <i class="fa fa-phone form-control-feedback"></i>
+                    <input type="number" id="telefono" name="telefono" class="form-control" placeholder="text">
+                </div>
+
+                <div  class="form-group has-feedback col-sm-9">
+                    <input type="text" id="gusto" name="gusto" class="form-control" placeholder="">
+                </div>
+
+                <div class="col-sm-3 text-center">
+                    <input class="btn boton" id ="boton" type = "submit" value="Gustos">
+                </div>
+            </div>
+            </form>
+        </div>
+         
+
+        <div class="contenedortabla">
+
+            <div class="row p-2">
+
+                <div  class="form-group col-sm-4 icon text-middle">
+                    <i class="fa fa-flag-o fa-2x flag"></i>
+                </div>
+    
+                <div  class="form-group2  col-sm-8 mb-1">
+                    
+                    <table class="table" id="tablaFormulario">
+                    <tr>
+                        <th>Gusto</th>
+                        <th>%</th>
+                        <th>edit</th>
+                    </tr>
+                    
+                   
+                </table>
+
+
+                </div>
+
+            </div>
+            
+        </div>
+
+        <div id="contenedorForm" class="editable"></div>
+
+     </div> <!--Cierre Div Principal-->
+
+     <script>
+
+        const form = document.getElementById("formulario");
+
+        var editando = false;
+
+        function volverEditable(nodo) {
+
+            if (editando == false) {
+                var nodoTd = nodo.parentNode; 
+                var nodoTr = nodoTd.parentNode; 
+                var nodoContenedorForm = document.getElementById('contenedorForm'); 
+                var nodosEnTr = nodoTr.getElementsByTagName('td');
+                var gustos = nodosEnTr[0].textContent; 
+                var porcentaje = nodosEnTr[1].textContent;
+                var nuevoCodigoHtml = '<td><input class="form-control" type="text" name="gustos" id="gustos" value="'+gustos+'" size="10"></td>'+
+                            '<td><input class="form-control" type="text" name="porcentaje" id="porcentaje" value="'+porcentaje+'" size="5"</td>'+ '<td>En edición</td>';
+                nodoTr.innerHTML = nuevoCodigoHtml;
+                nodoContenedorForm.innerHTML = 'Pulse ACEPTAR para guardar los cambios o CANCELAR para anularlos'+
+                                        '<form name = "formulario" action="Recibido.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+'<input class="btn boton" type = "submit" value="Aceptar"> <input class="btn btn-secondary" type="reset" value="Cancelar">';
+        editando = "true";
+        }
+        else {
+            alert ('Solo se puede editar una línea. Recargue la página para poder editar de nuevo');
+            }
+        }
+
+        function capturarEnvio() {
+
+            var nodoContenedorForm = document.getElementById('contenedorForm'); 
+            nodoContenedorForm.innerHTML = '<form name = "formulario" action="Recibido.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+
+            '<input type="text" name="nombre" value="'+document.querySelector('#nombre').value+'">'+
+            '<input type="hidden" name="email" value="'+document.querySelector('#email').value+'">'+
+            '<input type="hidden" name="telefono" value="'+document.querySelector('#telefono').value+'">'+
+            '<input type="hidden" name="gustos" value="'+document.querySelector('#gustos').value+'">'+
+            document.formulario.submit();
+        }
+        
+        form.addEventListener("submit", function(event) {
+
+                event.preventDefault();
+                
+
+                let formularioData = new FormData(form);
+
+                let tablaFormularioRef = document.getElementById("tablaFormulario");
+            
+                let newTablaRowRef = tablaFormularioRef.insertRow(-1);
+                
+                let newTypeCell = newTablaRowRef.insertCell(0);
+                newTypeCell.textContent = formularioData.get("gusto");
+
+                let newTypeCell2 = newTablaRowRef.insertCell(1);
+                newTypeCell2.textContent = "0"
+
+                let newTypeCell3 = newTablaRowRef.insertCell(2);
+                newTypeCell3.innerHTML = '<span class="editar" onclick="volverEditable(this)">Editar</span>';
+                
+                })
+
+
+                function anular() {
+                        window.location.reload();
+                } 
+    </script>
+
+  </body>
+
+</html>
+
