@@ -1,4 +1,4 @@
-body{
+body.index{
     background-color: rgb(235, 229, 229);
   }
   
@@ -113,5 +113,82 @@ body{
   }
   
   
-  
-  
+div.ficha{
+    width: auto;
+    border-radius: 5px;
+}  
+
+table.tablaFicha{
+    padding-left: 10px;
+    width: 100%;
+}
+
+th.ficha{
+    background-color: rgb(54, 135, 228);
+    padding: 10px;
+    color: white;
+    font-size: 30px;
+}
+
+div.principalFicha {
+    margin-left: 38%;
+    float: center;
+    position: relative;
+    height: auto;
+    width: 11.5%;
+    margin-top: 20px;
+    margin-right: px;
+    background-color: white;
+    border-radius: 5px;
+    justify-content: center;
+
+    margin-bottom: 200px;
+}
+
+i.smile{
+    color: black;
+}
+
+td.izq{
+    color: rgb(54, 135, 228);
+}
+
+td{
+    background-color: white;
+    padding: 5px;
+}
+
+p.email{
+    background-color: rgb(54, 135, 228);
+    color: white;
+    border-radius: 5px;
+    text-align: right;
+
+}
+
+p.telefono{
+    background-color: rgb(54, 135, 228);
+    color: white;
+    border-radius: 5px;
+    text-align: right;
+
+}
+
+p.gustos{
+    background-color: rgb(32, 184, 65);
+    color: white;
+    border-radius: 5px;
+    text-align: right;
+}
+
+p.porcentaje{
+    background-color: rgb(224, 67, 40);
+    color: white;
+    border-radius: 5px;
+    text-align: right;
+}
+
+
+
+
+
